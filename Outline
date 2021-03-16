@@ -1,0 +1,6 @@
+PHP renders client side form.
+Form call JS 
+JS call backend PHP
+Backend PHP does something
+Backend PHP returns value to JS?
+JS updates client side form.

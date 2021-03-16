@@ -1,0 +1,42 @@
+
+Basic admin page: https://blog.idrsolutions.com/2014/06/wordpress-plugin-part-1/
+
+insert examples:https://wordpress.stackexchange.com/questions/77258/custom-form-that-store-input-in-database
+<?php
+/**
+Use these line of codes, its working more than 100%
+ */
+get_header();?>
+ <?php
+        if (!empty($_POST)) {
+        global $wpdb;
+            $table = wp_contact;
+!!!!!! NEED VALIDATION!!!
+
+            $data = array(
+                'name' => $_POST['aname'],
+                'email'    => $_POST['aemail'],
+                 'subject' => $_POST['asubject'],
+                'msg'    => $_POST['amsg']
+            );
+            $format = array(
+                '%s',
+                '%s'
+            );
+            $success=$wpdb->insert( $table, $data, $format );
+            if($success){
+            echo 'data has been saved' ; 
+}
+}
+else   {
+?>
+        <form action="<?php echo get_option('siteurl'); ?>/form/" method="post">
+        <input type="text" name="aname">
+         <input type="text" name="aemail">
+          <input type="text" name="asubject">
+        <textarea type="text" name="amsg"></textarea>
+
+        <input type="submit">
+        </form>
+
+       <?php }  ?>

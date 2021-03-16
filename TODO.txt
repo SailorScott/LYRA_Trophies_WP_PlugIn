@@ -1,0 +1,129 @@
+
+
+
+Round 2: Adminsitrative pages
+Manage - 
+    boats - Find and edit, create new. Set name, skiper, etc..
+    Years - set year info, move to differnt year <>
+    Winners - for a year, select trophy and boat
+    Boat consolidation - merge 2 boats. Update and delete
+    Trophies - set name etc..
+    Non-boat winners
+
+https://www.inmotionhosting.com/support/edu/wordpress/save-wordpress-plugin-settings-with-form/
+
+https://www.smashingmagazine.com/2018/02/submitting-forms-without-reloading-ajax-implementation-wordpress/
+https://developer.wordpress.org/plugins/security/nonces/
+
+https://premium.wpmudev.org/blog/using-ajax-with-wordpress/
+
+
+_________________________________________________________________________________________________
+Round 1: Public facing pages
+
+Make pages
+    TrophiesListing >> done http://lyra-clone.local/trophieslisting/
+    TrophyDetails >> done  http://lyra-clone.local/trophydetails/
+    BoatDetails >> done  http://lyra-clone.local/boat-details/
+    ListBoats - alphabetic list of all boats  http://lyra-clone.local/winning-boats/ 
+
+
+Trophy details mods:
+Picture left, text under >> Done
+
+Link builders: Year, Boat, Trophy >> Done
+
+Link to year>> Done
+
+Boat details >> Done
+link to trophy and Year >> Done
+
+Year view (Annual winners) >> 
+Trophy, boat, skipper, what for
+
+Text  color #3333 >> done? took out explicit font colors.
+
+Form to collect corrections. click link and bring up form with 2 columns, one for current, 2nd with corrections. Queue for review.
+
+
+2014 Add 2nd BOY
+
+UPDATE `wp_lyra_regattas` SET HostClubs = CONCAT('LYRA ', CAST(regattaYear as CHAR(4)) )
+WHERE HostClubs = 'to be researched'; >> Done
+
+
+
+    Move people and YCs into seperate table. >> Done
+http://lyra-clone.local/trophy-winners-nonboat
+
+Get URL query string to pull out paramter >> Done
+ 
+trophies listing page >> done
+
+trophy details uses querystring trohpyID  >> Done
+
+boat details (click on boat in trophy details page and list past winings) use name? >> done
+    detail record for that boat.
+        owner yacht clube etc.
+        winnings for that particular boat.
+    also
+    list all other boats with same name & different owners boats and winners >> Done
+
+List boat or Find boat >> done
+    list all and the number of trophies. year first and last.
+
+    Change title of page: https://www.cyberciti.biz/programming/how-to-customize-title-in-wordpress-themes-using-pre_get_document_title/
+
+
+
+
+
+
+      .trophyPic {
+        width: 35%;
+        float: right;
+    }
+
+    .trophyDescription::after {
+        content: "";
+        clear: both;
+        display: table;
+        padding-bottom: 1em;
+    }
+
+    .trophyList {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+        color: black;
+        font-size: 16px;
+        padding-bottom: 2em;
+    }
+
+    .trophyList>* {
+        flex: 0 0 50%;
+    }
+
+    .yearRow:nth-of-type(2n) {
+        background-color: hsl(0, 2%, 90%);
+    }
+
+    .yearRow {
+        border: 1px solid black;
+        padding-top: 4%;
+        padding-left: 5%;
+        padding-right: 2%;
+        padding-bottom: 4%;
+        margin: -0.5px;
+    }
+
+    .year {
+        font-weight: 700;
+        float: left;
+    }
+
+    .boat {
+        font-weight: 400;
+        float: left;
+        padding-left: .75em;
+    }

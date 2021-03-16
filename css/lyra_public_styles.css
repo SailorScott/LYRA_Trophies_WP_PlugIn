@@ -1,0 +1,199 @@
+.trophyPic {
+    width: 35%;
+    float: left;
+}
+
+ /* .trophyDescription::before {
+    content: "";
+    clear: both;
+    display: table;
+    padding-top: 0.5em;
+ } */
+
+.trophyDescription::after {
+    content: "";
+    clear: both;
+    display: table;
+    padding-bottom: 1em;
+} 
+
+.trophyList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    /* color: black; */
+    font-size: 16px;
+    padding-bottom: 2em;
+}
+
+.trophyList>* {
+    flex: 0 0 50%;
+}
+
+.yearRow:nth-of-type(2n) {
+    background-color: hsl(20, 4%, 98%);
+}
+
+.yearRow {
+    border: 1px solid black;
+    padding-top: 4%;
+    padding-left: 5%;
+    padding-right: 2%;
+    padding-bottom: 4%;
+    margin: -0.5px;
+}
+
+.year {
+    font-weight: 700;
+    float: left;
+}
+
+.boat {
+    font-weight: 400;
+    float: left;
+    padding-left: .75em;
+}
+
+.trophyTitle, .boatNameTitle {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.boatDetails {
+    font-size: 1.5em;
+    padding-bottom: .25em;
+}
+
+.boatsTrophiesList {
+
+         display: grid;
+        grid-template-columns: 50%, 0;
+      /*  repeat(auto-fill, minmax(400px, 1fr)); */
+    
+        /* color: black; */
+        font-size: 16px;
+        padding-bottom: 2em;
+
+}
+
+.boatsList {
+
+    display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+
+   /* color: black; */
+   font-size: 16px;
+   padding-bottom: 2em;
+
+}
+
+.AwardedFor {
+    float: left;
+    padding-left: 1.5em;
+}
+
+.trophyListing >thead {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.LyraInputBlock {
+    margin: 1em;
+    margin-top: 2em;
+}
+.LyraInput {
+    display: block;
+    width: 100%; 
+    margin-bottom: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+}
+.LyraInput>label, .LyraInput>input {
+      display: block;
+      width: 100%;
+        width: auto;
+        display: flex;
+    }
+  
+    .LyraInput>span {
+        font-size: 16px;
+        min-width: 100px; 
+        font-weight: 600;
+      }
+      .LyraInput>input, .LyraInput>select {
+        border: 1px solid rgba(0,0,0,.1);
+        padding: .5rem;
+        font-size: 16px;
+          flex-grow: 1;
+          max-width: 450px; 
+      }
+      #boatListing {
+        height: 150px;
+    }
+      #boatsWinning {
+          height: 80px;
+      }
+    .buttonRight {
+          padding-left: 3em;
+      }
+  #responseMessage {
+    padding-top: .5em;
+    font-size: 16px;
+    font-weight:bold;
+    color: crimson;
+
+  }
+
+#WinnersLeftBlock {
+  width: 30%;  
+  float: left;
+}
+
+#WinnersRightBlock {
+    width: 60%;  
+    float: right;
+  }
+  
+  #TrophyListing{
+      height: 200px;
+  }
+
+
+  .WinnersColumn {
+    float: left;
+    padding: 10px;
+    
+  }
+  
+  .WinnersLeftBlock {
+    width: 30%;
+  }
+  
+  .WinnersRightBlock {
+    width: 60%;
+    
+  }
+  
+    /* Clear floats after the columns */
+  .WinnersRow:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .WinnersLeftBlock>label{
+    display: inline-block;
+  }
+
+  #TrophyListing{
+    height: 500px;
+    box-sizing: border-box;
+  }
+  #SelectedTrohyYear {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      font-size:x-large;
+      font-weight: bolder;
+  }
