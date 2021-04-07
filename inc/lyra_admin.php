@@ -15,6 +15,14 @@ function lyraAdmin_Landing(){
 
     add_submenu_page(
         'lyra-admin',
+        'Trophy Data',
+        'Trophy Data',
+        'edit_posts',
+        'lyra-admin'
+    );
+
+    add_submenu_page(
+        'lyra-admin',
         'Manage Boats',
         'Manage Boats',
         'edit_posts',
@@ -41,30 +49,32 @@ function lyraAdmin_Landing(){
     );
 
 
-    add_submenu_page(
-        'lyra-admin',
-        'Manage Non-Boat Trophy Winners',
-        'Manage Non-Boat',
-        'edit_posts',
-        'lyra_admin_non-boat_winners',
-        'lyra_admin_manage_placeholder'
-    );
+    // add_submenu_page(
+    //     'lyra-admin',
+    //     'Manage Non-Boat Trophy Winners',
+    //     'Manage Non-Boat',
+    //     'edit_posts',
+    //     'lyra_admin_non-boat_winners',
+    //     'lyra_admin_manage_placeholder'
+    // );
 
-    add_submenu_page(
-        'lyra-admin',
-        'Manage Trophies',
-        'Manage Trophies',
-        'edit_posts',
-        'lyra_admin_trophies',
-        'lyra_admin_manage_placeholder'
-    );
+    // add_submenu_page(
+    //     'lyra-admin',
+    //     'Manage Trophies',
+    //     'Manage Trophies',
+    //     'edit_posts',
+    //     'lyra_admin_trophies',
+    //     'lyra_admin_manage_placeholder'
+    // );
 }
 
   
 
 function lyra_admin_landing_page(){
 
-     $output = "<h1>Mange Trophy Data</h1>";
+     $output = "<h1>Mange Trophy Data</h1>
+     <p>First release of LYRA Trophy management administration site. Any problems please let Scott Nichols (scott.nic@icloud.com) know.
+      You are editing real data. Please be careful. We do have daily backups.</p>";
      echo $output;
   } 
 
@@ -80,7 +90,7 @@ function lyra_admin_landing_page(){
         <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
         <form action="options.php" method="post">
             <?php
-            echo esc_html("<h2>Still working on it!</h2>");
+            echo "<h2>Still working on it!</h2>";
             ?>
         </form>
     </div>

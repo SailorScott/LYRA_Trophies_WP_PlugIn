@@ -39,7 +39,7 @@ function lyra_admin_boats()
 <label class='LyraInput' for='HomeClub'><span >Home Club</span><input type='text' name='HomeClub' id='HomeClub' placeholder='Home Yacht Club'></label>
     
 <button id='butSave' class='button action'>Save Boat Info</button> 
-<button id='butSaveAndTrophies' class='button action'>Save Boat and add Trophies</button> 
+
 <span class='buttonRight'>&nbsp;</span>
 <button id='butDelete' class='button action' >Delete Boat and associated Trophies</button> 
 <div id='responseMessage'></div>

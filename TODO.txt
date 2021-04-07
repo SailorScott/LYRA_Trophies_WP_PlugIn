@@ -1,5 +1,5 @@
 
-
+Error log: C:\Users\gjnsdn\Local Sites\lyra-clone\logs\php\7.0.3
 
 Round 2: Adminsitrative pages
 Manage - 
