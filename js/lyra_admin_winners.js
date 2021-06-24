@@ -1,7 +1,11 @@
 // Supporting JavaScript for winners administration.
 // Scott Nichols, 03/08/2021
 
+
+
 jQuery(document).ready(function ($) {
+
+
 	// **********************************************************************************
 	// load the list of trophies and Boats.
 	GetTrophies();
@@ -13,13 +17,13 @@ jQuery(document).ready(function ($) {
 	// On click of trophy listbox and year exit
 	$("#Year").focusout(function (e) {
 		e.preventDefault();
-		console.log('Year on exit');
+		// console.log('Year on exit', $("#Year").val());
 		GetWinners();
 	});
 
 	$("#TrophyListing").click(function (e) {
 		e.preventDefault();
-		console.log('TrophyListing on exit');
+		// console.log('TrophyListing on exit');
 		GetWinners();
 	});
 
@@ -27,8 +31,8 @@ jQuery(document).ready(function ($) {
 	// **********************************************************************************
 	$("[id^=butSave-]").click(function (e) {
 		e.preventDefault();
-
-		console.log("event.target.id", e.target.id);
+		if($('#BoatListing-' + row).val()) {
+		//console.log("event.target.id", e.target.id);
 
 		var row = (e.target.id).substr(-1);
 		console.log("row", row);
@@ -44,8 +48,7 @@ jQuery(document).ready(function ($) {
 
 		};
 
-		$('#responseMessage').html('Waiting for server...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server...');
 
 		$.ajax({
 			type: "post",
@@ -69,13 +72,13 @@ jQuery(document).ready(function ($) {
 			}
 
 		});
+	}
 	});
 
 
 	$("[id^=butDelete-]").click(function (e) {
 		e.preventDefault();
 
-		var txt;
 		if (confirm("Are you sure you want to delete? There is no UNDO!")) {
 
 			console.log("event.target.id", e.target.id);
@@ -92,8 +95,7 @@ jQuery(document).ready(function ($) {
 
 			};
 
-			$('#responseMessage').html('Waiting for server...');
-			$('#responseMessage').fadeIn(100);
+			responseMessage('Waiting for server...');
 
 			$.ajax({
 				type: "post",
@@ -126,67 +128,74 @@ jQuery(document).ready(function ($) {
 
 
 	function GetWinners() {
-		// Get the list of winners for a year and trophy
-		var formData = {
-			"action": "processWinners",
-			"activity": "GetWinners",
-			'regattaYear': $('#Year').val(),
-			'TrophyID': $('#TrophyListing').val(),
-		};
-		console.log("$('#TrophyListing').val()", $('#TrophyListing').val());
-		$('#responseMessage').html('Waiting for server...');
-		$('#responseMessage').fadeIn(100);
+		// check that we have a year and trophy before sending to server
 
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: myAjax.ajaxurl,
-			data: formData,
-			success: function (response) {
-				console.log('response:' + JSON.stringify(response));
+		if ($('#Year').val() && $('#TrophyListing').val()) {
+			$("#SelectedTrohyYear").text("Winners for " + $( "#TrophyListing option:selected" ).text() + " in " + $('#Year').val() );
 
-				if (response.success) {
-					data = response.data;
-					// clear values from all text boxes
-					// hide all but first row
-					for (let index = 0; index < 5; index++) {
-						$("#BoatListing-" + index).val(-999);
-						$("#AwardedFor-" + index).val('');
+			// Get the list of winners for a year and trophy
+			var formData = {
+				"action": "processWinners",
+				"activity": "GetWinners",
+				'regattaYear': $('#Year').val(),
+				'TrophyID': $('#TrophyListing').val(),
+			};
+			console.log("$('#TrophyListing').val()", $('#TrophyListing').val());
+			responseMessage('Waiting for server...');
 
-						// if (index > 0) {
-						// 	$('#winnersRow-' + index).hide();
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: myAjax.ajaxurl,
+				data: formData,
+				success: function (response) {
+					console.log('response:' + JSON.stringify(response));
+
+					if (response.success) {
+						data = response.data;
+						// clear values from all text boxes
+						// hide all but first row
+						for (let index = 0; index < 5; index++) {
+							$("#BoatListing-" + index).val(-999);
+							$("#AwardedFor-" + index).val('');
+
+							// if (index > 0) {
+							// 	$('#winnersRow-' + index).hide();
+							// }
+						}
+
+						var lastTableRow = -1;
+						var obj = jQuery.parseJSON(data.winners);
+						$.each(obj, function (i, item) {
+							$("#BoatListing-" + i).val(item.BoatID);
+							$("#AwardedFor-" + i).val(item.AwardedFor);
+							$("#OrigBoatID-" + i).val(item.BoatID);
+							console.log("i", i);
+								// $('#winnersRow-' + i).show();
+							lastTableRow = i;
+						});
+
+						// $("#BoatListing-1").val(data.BoatID);
+						responseMessage(data.UserMessage + ' Found ' + (lastTableRow + 1) + ' winners.');
+
+						// if (lastTableRow < 4) {
+						// 	$('#winnersRow-' + (lastTableRow + 1)).show();
 						// }
+
 					}
-
-					var lastTableRow = -1;
-					var obj = jQuery.parseJSON(data.winners);
-					$.each(obj, function (i, item) {
-						$("#BoatListing-" + i).val(item.BoatID);
-						$("#AwardedFor-" + i).val(item.AwardedFor);
-						$("#OrigBoatID-" + i).val(item.BoatID);
-						console.log("i", i);
-						//	$('#winnersRow-' + i).show();
-						lastTableRow = i;
-					});
-
-					// $("#BoatListing-1").val(data.BoatID);
-					responseMessage(data.UserMessage + ' Found ' + (lastTableRow + 1) + ' winners.');
-
-					// if (lastTableRow < 4) {
-					// 	$('#winnersRow-' + (lastTableRow + 1)).show();
-					// }
-
+					else {
+						alert("Sorry, we had an error getting your data from the  server. If it reoccurs please send a note to the web admin.");
+					}
+				},
+				error: function (errorThrown) {
+					console.log(errorThrown);
 				}
-				else {
-					alert("Sorry, we had an error getting your data from the  server. If it reoccurs please send a note to the web admin.");
-				}
-			},
-			error: function (errorThrown) {
-				console.log(errorThrown);
-			}
 
-		});
+			});
 
+		} else {
+			responseMessage("Please check that you have a year entered, and trophy selected!");
+		}
 
 	}
 
@@ -203,8 +212,7 @@ jQuery(document).ready(function ($) {
 			"activity": "GetTropies"
 		};
 
-		$('#responseMessage').html('Waiting for server for trophies list...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server for trophies list...');
 
 		$.ajax({
 			type: "post",
@@ -249,8 +257,7 @@ jQuery(document).ready(function ($) {
 			"activity": "GetBoats"
 		};
 
-		$('#responseMessage').html('Waiting for server for boat names list...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server for boat names list...');
 
 		$.ajax({
 			type: "post",
@@ -298,25 +305,11 @@ jQuery(document).ready(function ($) {
 
 	}
 
-
-	// Clear data entry fields.
-	function clearForm() {
-
-		//console.log('formData', formData);
-		// $('#BoatID').val("");
-		// $('#BoatName').val("");
-		// $('#Skipper').val("");
-		// $('#BoatType').val("");
-		// $('#HomeClub').val("");
-
-	}
-
 	function responseMessage(msg) {
 		$('#responseMessage').html(msg);
 		$('#responseMessage').fadeIn(100);
 		$("#responseMessage").delay(3200).fadeOut(300);
 
 	}
-
 
 });

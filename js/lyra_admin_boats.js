@@ -2,6 +2,7 @@
 // Scott Nichols, 02/08/2021
 
 jQuery(document).ready(function ($) {
+
 	// **********************************************************************************
 	$("#butSave").click(function (e) {
 		e.preventDefault();
@@ -17,8 +18,7 @@ jQuery(document).ready(function ($) {
 			'HomeClub': $('#HomeClub').val()
 		};
 
-		$('#responseMessage').html('Waiting for server...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server...');
 
 		$.ajax({
 			type: "post",
@@ -56,8 +56,7 @@ jQuery(document).ready(function ($) {
 			'BoatType': '',
 			'HomeClub': ''
 		};
-		$('#responseMessage').html('Waiting for server...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server...');
 
 		$.ajax({
 			type: "post",
@@ -102,16 +101,10 @@ jQuery(document).ready(function ($) {
 			'BoatID': $("#boatListing").val()
 		};
 
-		//console.log('formData', formData);
-		// $('#BoatID').val("");
-		// $('#BoatName').val("");
-		// $('#Skipper').val("");
-		// $('#BoatType').val("");
-		// $('#HomeClub').val("");
+	
 		clearForm();
 
-		$('#responseMessage').html('Waiting for server...');
-		$('#responseMessage').fadeIn(100);
+		responseMessage('Waiting for server...');
 
 		$.ajax({
 			type: "post",
@@ -202,20 +195,6 @@ jQuery(document).ready(function ($) {
 						// response = jQuery.parseJSON(response)
 						data = response.data;
 						responseMessage(data.UserMessage);
-	
-						// // Go through boats JSON and fill in SELECT 
-						// $("#boatsWinning").empty();
-						// console.log('about to parse');
-	
-						// var trophies = data.Trophies;
-						// $.each(trophies, function (i, item) {
-						// 	$('#boatsWinning').append($('<option>', {
-						// 		value: item.TrophyID,
-						// 		text: item.DisplayName
-						// 	}));
-							
-						// });
-
 					}
 					else {
 						alert("Sorry, we had an error getting your data from the  server. If it reoccurs please send a note to the web admin.");
@@ -227,16 +206,7 @@ jQuery(document).ready(function ($) {
 	
 			});
 
-
-
-
-
-
-
 		}
-
-
-
 
 	});
 
@@ -261,6 +231,5 @@ jQuery(document).ready(function ($) {
 		$("#responseMessage").delay(3200).fadeOut(300);
 
 	}
-
 
 });

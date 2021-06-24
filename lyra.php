@@ -47,18 +47,23 @@ function lyraTrophies()
     wp_enqueue_style('lyraTrophies');
   
     wp_register_script("lyra_admin_boats",  plugins_url('lyra/js/lyra_admin_boats.js'), array('jquery'));
-  //  wp_register_script("lyra_admin",  plugins_url('lyra/js/lyra_admin.js'), array('jquery'));
     wp_localize_script('lyra_admin_boats', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
-    wp_enqueue_script('jquery');
     wp_enqueue_script('lyra_admin_boats');
 
-
+    wp_enqueue_script('jquery');
+  
 
     wp_register_script("lyra_admin_winners",  plugins_url('lyra/js/lyra_admin_winners.js'), array('jquery'));
     wp_localize_script('lyra_admin_winners', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
     wp_enqueue_script('lyra_admin_winners');
-    // header("Location: http://www.rit.edu/");
   
+    
+
+    wp_register_script("lyra_admin_trophies",  plugins_url('lyra/js/lyra_admin_trophies.js'), array('jquery'));
+    wp_localize_script('lyra_admin_trophies', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+    wp_enqueue_script('lyra_admin_trophies');
+
+
 }
 
 add_action('init', 'lyraTrophies');
@@ -100,4 +105,8 @@ add_action('wp_ajax_processBoat', 'processBoat');
 require_once('inc/lyra_admin_winners.php'); 
 require_once('inc/lyra_admin_winners_process.php');
 add_action('wp_ajax_processWinners', array('Winners','process'));
-// add_action('wp_ajax_nopriv_processBoat', 'processBoat');
+
+// admin the trophies page
+require_once('inc/lyra_admin_trophies.php'); 
+require_once('inc/lyra_admin_trophies_process.php');
+add_action('wp_ajax_processTrophies', array('Trophies','process'));

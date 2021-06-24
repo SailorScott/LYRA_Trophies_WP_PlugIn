@@ -122,15 +122,33 @@
         min-width: 100px; 
         font-weight: 600;
       }
-      .LyraInput>input, .LyraInput>select {
+      .LyraInput>input {
         border: 1px solid rgba(0,0,0,.1);
         padding: .5rem;
         font-size: 16px;
           flex-grow: 1;
           max-width: 450px; 
       }
-      #boatListing {
-        height: 150px;
+
+       .LyraInput>select, .LyraInput>textarea {
+        border: 1px solid rgba(0,0,0,.1);
+        /* padding: .5rem; */
+        /* font-size: 16px; */
+          flex-grow: 1;
+          max-width: 450px; 
+      }
+
+  .TrophyListingListBox {
+    height: 200px;
+    border-color: crimson;
+    border-style: groove;
+  }
+
+  #boatListing{
+    height: 150px;
+}
+      #TrophyListing {
+        height: 300px;
     }
       #boatsWinning {
           height: 80px;
@@ -156,8 +174,9 @@
     float: right;
   }
   
-  #TrophyListing{
-      height: 200px;
+  .LyraInputBlock>#TrophyListing{
+    all: initial;
+
   }
 
 
@@ -187,7 +206,7 @@
     display: inline-block;
   }
 
-  #TrophyListing{
+  .WinnersLeftBlock>#TrophyListing{
     height: 500px;
     box-sizing: border-box;
   }

@@ -13,13 +13,13 @@ function lyraAdmin_Landing(){
                 
     add_menu_page( $page_title,$menu_title,$capability,$menu_slug,$function,$icon_url,$position );
 
-    add_submenu_page(
-        'lyra-admin',
-        'Trophy Data',
-        'Trophy Data',
-        'edit_posts',
-        'lyra-admin'
-    );
+    // add_submenu_page(
+    //     'lyra-admin',
+    //     'Trophy Data',
+    //     'Trophy Data',
+    //     'edit_posts',
+    //     'lyra-admin'
+    // );
 
     add_submenu_page(
         'lyra-admin',
@@ -58,14 +58,14 @@ function lyraAdmin_Landing(){
     //     'lyra_admin_manage_placeholder'
     // );
 
-    // add_submenu_page(
-    //     'lyra-admin',
-    //     'Manage Trophies',
-    //     'Manage Trophies',
-    //     'edit_posts',
-    //     'lyra_admin_trophies',
-    //     'lyra_admin_manage_placeholder'
-    // );
+    add_submenu_page(
+        'lyra-admin',
+        'Manage Trophies',
+        'Manage Trophies',
+        'edit_posts',
+        'lyra_admin_trophies',
+        'lyra_admin_trophies'
+    );
 }
 
   
@@ -73,8 +73,9 @@ function lyraAdmin_Landing(){
 function lyra_admin_landing_page(){
 
      $output = "<h1>Mange Trophy Data</h1>
-     <p>First release of LYRA Trophy management administration site. Any problems please let Scott Nichols (scott.nic@icloud.com) know.
-      You are editing real data. Please be careful. We do have daily backups.</p>";
+     <p>Second release (6/23/2021) of LYRA Trophy management administration site. Any problems please let Scott Nichols (scott.nic@icloud.com) know.
+      You are editing real data. Please be careful. We do have daily backups.</p>
+    <p>This is an open source project and the source code is here <a href='https://github.com/SailorScott/LYRA_Trophies_WP_PlugIn'>https://github.com/SailorScott/LYRA_Trophies_WP_PlugIn</a> The project is still early in development.</p>";
      echo $output;
   } 
 

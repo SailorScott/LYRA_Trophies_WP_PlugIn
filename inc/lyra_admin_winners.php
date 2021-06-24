@@ -14,7 +14,9 @@ function lyra_admin_winners()
 
         <label  class='LyraInput' for='TrophyListing'>
             <span >Select a Trophy to assign winners</span>
-            <select id='TrophyListing' size=30 >
+            <br/>
+            <select  id='TrophyListing' size='8' >
+  
             </select>
         </label>
 
