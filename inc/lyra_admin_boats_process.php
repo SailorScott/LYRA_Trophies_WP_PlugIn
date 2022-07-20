@@ -27,15 +27,18 @@ function processBoat()
     $boatData->BoatType = $_POST['BoatType'] ?? '';
     $boatData->HomeClub = $_POST['HomeClub'] ?? '';
 
-    error_log('FormData' . $boatData->BoatName);
+    error_log('Admin Boats process FormData Boat name' . $boatData->BoatName);
+    error_log('activity:-' . $activity . '- boatid:|' . $boatData->BoatID .'|');
 
     switch ($activity) {
         case 'Save':
-            if ($boatData->BoatID === -99) {
+            if ($boatData->BoatID === "-99") {
                 // insert new boat
+                error_log('Save:');
                 $returnMsg = create($boatData);
             } else {
                 // Update existing record;
+                error_log('Update:');
                 $returnMsg = update($boatData);
             }
             break;
@@ -68,22 +71,19 @@ function processBoat()
 // create boat
 function create($boatData)
 {
-    global $wpdb;
+    $boatData->BoatId = null;
 
-    $wpdb->query(
-        $wpdb->prepare(
-            "INSERT INTO " .  $wpdb->prefix . "lyra_boat SET 
-            BoatName=%s, 
-            Skipper=%s, 
-            BoatType=%s, 
-            HomeClub=%s 
-            ",
-            $boatData->BoatName,
-            $boatData->Skipper,
-            $boatData->BoatType,
-            $boatData->HomeClub
-        )
-    );
+
+    global $wpdb;
+    error_log('Create boat data-Boat name' . $boatData->BoatName);
+    $wpdb->insert(
+        $wpdb->prefix . "lyra_boat",
+        array(
+            'BoatName' => $boatData->BoatName,
+            'Skipper' =>  $boatData->Skipper,
+            'BoatType' => $boatData->BoatType,
+            'HomeClub' =>  $boatData->HomeClub
+        ));
 
     $userMsg = 'Successfully saved ' . $boatData->BoatName;
 
@@ -92,6 +92,13 @@ function create($boatData)
         $userMsg = "Error: Problem adding boat to database. Please see the error log for more details.";
     endif;
 
+    $BoatID = $wpdb->get_var(
+        "SELECT BoatID FROM " .  $wpdb->prefix . "lyra_boat
+                ORDER BY BoatID DESC LIMIT 1"
+    );
+
+    error_log('Create new boat id' . $BoatID);
+ 
     $returnMsg = array(
         'newBoatID' => $wpdb->insert_id,
         'UserMessage' =>  $userMsg

@@ -4,7 +4,7 @@
 function lyra_admin_winners()
 {
     echo "
-<div class='WinnersRow'>
+<div id='lyra_admin_winners' class='WinnersRow'>
     <div class='WinnersColumn WinnersLeftBlock'>
     
         <label class='LyraInput' for='Year'>

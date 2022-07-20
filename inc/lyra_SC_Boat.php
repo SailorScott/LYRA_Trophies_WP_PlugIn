@@ -11,7 +11,7 @@ add_shortcode('BoatsListing', 'lyra_boat_listing_shortcode');
 function getBoatID()
 {
    // look in querystring for trophyId, note case sensitive
-   $queryParamater = $_GET['BoatId'];
+   $queryParamater = $_GET['BoatId'] ?? 0;;
 
    // echo "paramater:";
    // echo $queryParamater;

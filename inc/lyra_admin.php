@@ -73,6 +73,7 @@ function lyraAdmin_Landing(){
 function lyra_admin_landing_page(){
 
      $output = "<h1>Mange Trophy Data</h1>
+     <p> Third release (1/25/2022) to fix bugs in Trophy management page.</p>
      <p>Second release (6/23/2021) of LYRA Trophy management administration site. Any problems please let Scott Nichols (scott.nic@icloud.com) know.
       You are editing real data. Please be careful. We do have daily backups.</p>
     <p>This is an open source project and the source code is here <a href='https://github.com/SailorScott/LYRA_Trophies_WP_PlugIn'>https://github.com/SailorScott/LYRA_Trophies_WP_PlugIn</a> The project is still early in development.</p>";

@@ -46,12 +46,12 @@ function lyraTrophies()
     wp_register_style('lyraTrophies', plugins_url('css/lyra_public_styles.css', __FILE__));
     wp_enqueue_style('lyraTrophies');
   
+    wp_enqueue_script('jquery');
+    
     wp_register_script("lyra_admin_boats",  plugins_url('lyra/js/lyra_admin_boats.js'), array('jquery'));
     wp_localize_script('lyra_admin_boats', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
     wp_enqueue_script('lyra_admin_boats');
 
-    wp_enqueue_script('jquery');
-  
 
     wp_register_script("lyra_admin_winners",  plugins_url('lyra/js/lyra_admin_winners.js'), array('jquery'));
     wp_localize_script('lyra_admin_winners', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));

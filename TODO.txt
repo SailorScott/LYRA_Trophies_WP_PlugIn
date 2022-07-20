@@ -1,14 +1,17 @@
 
-Error log: C:\Users\gjnsdn\Local Sites\lyra-clone\logs\php\7.0.3
-
+Error log:
+C:\Users\gjnsdn\Local Sites\lyra-testing\app\public\wp-content
+ C:\Users\gjnsdn\Local Sites\lyra-clone\logs\php\7.0.3
+        C:\Users\gjnsdn\Local Sites\lyra3\logs\php
 Round 2: Adminsitrative pages
 Manage - 
-    boats - Find and edit, create new. Set name, skiper, etc..
+    boats - Find and edit, create new. Set name, skiper, etc..<< DONE
     Years - set year info, move to differnt year <>
-    Winners - for a year, select trophy and boat
+    Winners - for a year, select trophy and boat<< DONE
     Boat consolidation - merge 2 boats. Update and delete
-    Trophies - set name etc..
+    Trophies - set name etc..<< DONE
     Non-boat winners
+    Skipper search page.
 
 https://www.inmotionhosting.com/support/edu/wordpress/save-wordpress-plugin-settings-with-form/
 

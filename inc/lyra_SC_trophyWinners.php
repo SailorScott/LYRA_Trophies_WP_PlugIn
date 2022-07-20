@@ -8,7 +8,7 @@ add_shortcode('trophyWinners_nonBoat', 'lyra_trophy_winners_nonBoat_shortcode');
 function getTrophyID()
 {
    // look in querystring for trophyId, note case sensitive
-   $queryParamater = $_GET['trophyId'];
+   $queryParamater = $_GET['trophyId'] ?? 0;
 
    // echo "paramater:";
    // echo $queryParamater;
@@ -32,7 +32,7 @@ function lyra_trophy_winners_shortcode($atts = [], $content = null, $tag = '')
       "lyra_winners WHERE TrophyID =" . getTrophyID() . " AND BoatID <> 143".
       " ORDER BY regattaYear DESC";
 
-   $posts = $wpdb->get_results($sql);
+    $posts = $wpdb->get_results($sql);
 
    ob_start();
 
@@ -133,7 +133,8 @@ function lyra_trophy_list_shortcode($atts = [], $content = null, $tag = '')
 
    $sql = "SELECT TrophyID, TrophyNameShort, DeedOfGift, YearFirstAwarded, RaceDetails,TrophyColumnLabel  " .
          "FROM " . $wpdb->prefix . "lyra_trophies WHERE TrophyColumnLabel <> 'Flag' " .
-         "ORDER BY TrophyPageDisplayOrder ASC;";
+         " AND TrophyID > 0 " .
+         "ORDER BY TrophyPageDisplayOrder, TrophyNameShort ASC;";
 
       $posts = $wpdb->get_results($sql);
 

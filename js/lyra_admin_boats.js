@@ -3,9 +3,17 @@
 
 jQuery(document).ready(function ($) {
 
+	if($("#lyra_admin_boats").length) {
+		console.log("#lyra_admin_boats");
+
 	// **********************************************************************************
+
 	$("#butSave").click(function (e) {
 		e.preventDefault();
+
+		// check if we have a boat name
+	if($("#BoatName").val().length > 1) {
+
 
 		var formData = {
 			"action": "processBoat",
@@ -42,6 +50,7 @@ jQuery(document).ready(function ($) {
 			}
 
 		});
+	} else responseMessage('Boat name is required!!');
 	});
 	//************************************************************************** */
 	$("#butFind").click(function (e) {
@@ -217,7 +226,7 @@ jQuery(document).ready(function ($) {
 	function clearForm() {
 
 		//console.log('formData', formData);
-		$('#BoatID').val("");
+		$('#BoatID').val("-99");
 		$('#BoatName').val("");
 		$('#Skipper').val("");
 		$('#BoatType').val("");
@@ -231,5 +240,5 @@ jQuery(document).ready(function ($) {
 		$("#responseMessage").delay(3200).fadeOut(300);
 
 	}
-
+	}
 });

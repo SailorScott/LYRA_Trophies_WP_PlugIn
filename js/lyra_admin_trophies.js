@@ -5,7 +5,8 @@
 
 jQuery(document).ready(function ($) {
 
-
+	if($("#lyra_admin_trophies").length) {
+		console.log("#lyra_admin_trophies");
 	// **********************************************************************************
 	// load the list of trophies.
 	GetTrophies();
@@ -19,7 +20,7 @@ jQuery(document).ready(function ($) {
 		console.log('TrophyListingDropDown on exit for Trophies page');
 
 		if ($('#TrophyListingDropDown').val() === '-789876546') {
-			clearForm("");
+			clearForm(-999);
 		} else {
 
 			GetTrophy();
@@ -32,6 +33,8 @@ jQuery(document).ready(function ($) {
 		e.preventDefault();
 
 		console.log("butSaveTrophy");
+
+		if($("#TrophyNameShort").val().length > 1) {
 
 		var formData = {
 			"action": "processTrophies",
@@ -72,6 +75,9 @@ jQuery(document).ready(function ($) {
 			}
 
 		});
+	} else 
+		responseMessage('Trophy Name (Short) is required.')
+
 	});
 
 
@@ -129,7 +135,7 @@ jQuery(document).ready(function ($) {
 
 		console.log('clearing');
 
-		clearForm("New");
+		clearForm(-999);
 
 	});
 
@@ -233,6 +239,7 @@ jQuery(document).ready(function ($) {
 
 					var obj = jQuery.parseJSON(data.trophiesListing);
 					$.each(obj, function (i, item) {
+						//console.log('item.DisplayName:',item.DisplayName);
 						$('#TrophyListingDropDown').append($('<option>', {
 							value: item.TrophyID,
 							text: item.DisplayName
@@ -273,7 +280,7 @@ jQuery(document).ready(function ($) {
 		$('#YearFirstAwarded').val("");
 		$('#YearRetired').val("");
 	}
-
+	}
 });
 
 

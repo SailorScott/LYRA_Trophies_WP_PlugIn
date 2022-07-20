@@ -7,7 +7,7 @@ add_shortcode('yearNonBoatWinners', 'lyra_year_winners_nonBoat_shortcode');
 function getYear()
 {
    // look in querystring for Year, note case sensitive
-   $queryParamater = $_GET['regattYear'];
+   $queryParamater = $_GET['regattYear'] ?? -999;
 
    // echo "paramater:";
    // echo $queryParamater;
@@ -78,7 +78,7 @@ function lyra_year_Reggatta_shortcode($atts = [], $content = null, $tag = '')
    $output = "<div class='trophyTitle'>" .
       $post->HostClubs .  "</div>" .
       "<div class='trophyText'>" .
-      $post->LongDescription .
+      $post->Description .
       "</div>";
 
    echo $output;
@@ -115,8 +115,10 @@ function lyra_year_winners_nonBoat_shortcode($atts = [], $content = null, $tag =
                "<td>" . $post->AwardedFor . "</td></tr>";
          }
       $output .= "</tbody> </table>";
+
+      echo $output;
    }
-   echo $output;
+  
 
    return ob_get_clean();
 }

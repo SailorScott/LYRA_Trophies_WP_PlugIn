@@ -24,7 +24,7 @@ class Trophies
 
         $trophyData = new Trophies();
 
-        $activity = $_POST['activity']; // front end action request. CRUD
+        $activity = $_POST['activity'] ?? 'nothing'; // front end action request. CRUD
         $trophyData->TrophyID = $_POST['TrophyID'] ?? -999;
         $trophyData->TrophyNameShort = $_POST['TrophyNameShort'] ?? '';
         $trophyData->TrophyColumnLabel = $_POST['TrophyColumnLabel'] ?? '';
@@ -34,14 +34,15 @@ class Trophies
         $trophyData->TrophyPageDisplayOrder = $_POST['TrophyPageDisplayOrder'] ?? '';
 
         $trophyData->PictureLink = $_POST['PictureLink'] ?? '';
-        $trophyData->YearFirstAwarded = $_POST['YearFirstAwarded'] ;
-        $trophyData->YearRetired = $_POST['YearRetired'];
+        $trophyData->YearFirstAwarded = $_POST['YearFirstAwarded'] ?? '';
+        $trophyData->YearRetired = $_POST['YearRetired'] ?? '';
 
         $trophyData->YearFirstAwarded = $trophyData->checkYear($trophyData->YearFirstAwarded);
         $trophyData->YearRetired = $trophyData->checkYear($trophyData->YearRetired);
 
 
-        //   error_log('FormData' . $trophyData);
+           error_log('FormData - TrophyID' . $trophyData->TrophyID);
+           error_log('FormData - activity' . $activity);
 
         switch ($activity) {
             case 'GetTropiesList':
@@ -53,8 +54,8 @@ class Trophies
                 $returnMsg = $trophyData->Trophy($trophyData);
                 break;
             case 'SaveTrophy':
-                if ($trophyData->TrophyID == -999 || $trophyData->TrophyID = 'New') {
-                    $returnMsg = $trophyData->insert($trophyData);
+                if (intval($trophyData->TrophyID) == -999) {
+                   $returnMsg = $trophyData->insert($trophyData);
                 } else {
                     $returnMsg = $trophyData->update($trophyData);
                 }
@@ -181,8 +182,7 @@ class Trophies
         );
 
         $TrophyName = $wpdb->get_var(
-            "SELECT  TrophyNameShort 
-            FROM " .  $wpdb->prefix . "lyra_trophies
+            "SELECT TrophyNameShort FROM " .  $wpdb->prefix . "lyra_trophies
             WHERE TrophyID =" . $trophyData->TrophyID
         );
 
@@ -224,12 +224,11 @@ class Trophies
             ));
 
         $TrophyName = $wpdb->get_var(
-            "SELECT TrophyNameShort 
-            FROM " .  $wpdb->prefix . "lyra_trophies
+            "SELECT TrophyNameShort FROM " .  $wpdb->prefix . "lyra_trophies
             ORDER BY TrophyID DESC LIMIT 1"
         );
 
-        $userMsg =   "Added <i>" . $TrophyName . "'s</i> information to the datebase.";
+        $userMsg =   "Added <i>" . $TrophyName . "'s</i> information to the database.";
 
         if ($wpdb->last_error !== '') :
             $wpdb->print_error();
@@ -255,8 +254,7 @@ class Trophies
         $winnersNonBoat = 0;
 
         $TrophyName = $wpdb->get_var(
-            "SELECT  TrophyNameShort 
-            FROM " .  $wpdb->prefix . "lyra_trophies
+            "SELECT TrophyNameShort FROM " .  $wpdb->prefix . "lyra_trophies
             WHERE TrophyID =" . $trophyData->TrophyID
         );
 

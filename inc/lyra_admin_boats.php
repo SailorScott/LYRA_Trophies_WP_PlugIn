@@ -3,7 +3,7 @@
 
 function lyra_admin_boats()
 {
-    echo "<div class='LyraInputBlock'>
+    echo "<div id='lyra_admin_boats' class='LyraInputBlock'>
 
     <label class='LyraInput' for='FilterBoatsList'>
         <span>Filter</span>
@@ -30,10 +30,10 @@ function lyra_admin_boats()
 
 <label class='LyraInput' for='BoatID'>
     <span >Boat Id</span>
-    <input type='text' id='BoatID' readonly>
+    <input type='text' id='BoatID' value='-99' readonly>
     <button id='butClear' class='button action'>New (clear form)</button>
 </label>
-<label class='LyraInput' for='BoatName'><span>Boat Name</span><input type='text' name='BoatName' id='BoatName' placeholder='Please enter boat name'></label>
+<label class='LyraInput' for='BoatName'><span>Boat Name*</span><input type='text' name='BoatName' id='BoatName' required placeholder='Please enter boat name'></label>
 <label class='LyraInput' for='Skipper'><span>Skipper</span><input type='text' name='Skipper' id='Skipper' placeholder='Skippers name'></label>
 <label class='LyraInput' for='BoatType'><span >Boat Make</span><input type='text' name='BoatType' id='BoatType' placeholder='Boat make and model'></label>
 <label class='LyraInput' for='HomeClub'><span >Home Club</span><input type='text' name='HomeClub' id='HomeClub' placeholder='Home Yacht Club'></label>

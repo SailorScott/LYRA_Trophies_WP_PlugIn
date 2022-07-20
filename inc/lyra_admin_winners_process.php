@@ -17,14 +17,16 @@ class Winners
 
         $winnerData = new Winners();
 
-        $activity = $_POST['activity']; // front end action request. CRUD
+        $activity = $_POST['activity'] ?? 'nothing'; // front end action request. CRUD
         $winnerData->BoatID = $_POST['BoatID'] ?? -999;
         $winnerData->regattaYear = $_POST['regattaYear'] ?? -999;
         $winnerData->TrophyID = $_POST['TrophyID'] ?? -99;
         $winnerData->OrigBoatID = $_POST['OrigBoatID'] ?? -999;
         $winnerData->AwardedFor = $_POST['AwardedFor'] ?? '';
 
-       //   error_log('FormData' . $winnerData);
+        error_log('admin winners process - activity:' . $activity);
+
+          error_log('FormData:' . print_r($winnerData, true));
 
         switch ($activity) {
             case 'GetTropies':
@@ -36,7 +38,7 @@ class Winners
                 break;
 
             case 'GetWinners':
-                $returnMsg = $winnerData->Winners($winnerData);
+                $returnMsg = $winnerData->TrophyWinners($winnerData);
                 break;
             case 'Save':
                 // Update existing record;
@@ -47,6 +49,10 @@ class Winners
                 // get the Winner details and any trophies the won.
                 $returnMsg = $winnerData->delete($winnerData);
                 break;
+            case 'nothing':
+                    error_log('activity:' . $activity);
+                    break;
+
             default:
                 # code...
                 break;
@@ -55,7 +61,7 @@ class Winners
         wp_send_json_success($returnMsg);
 
         // Always die in functions echoing Ajax content
-        // wp_die();
+         wp_die();
     }
 
     // handle the individual work request from the front end.
@@ -72,7 +78,7 @@ class Winners
         WHERE TrophyColumnLabel ='Boat'
         ORDER BY TrophyNameShort"
         );
-
+        error_log('In TrophiesListing after select:' . count($trophies));
         // convert into JSON
         $data = json_encode($trophies);
 
@@ -122,7 +128,7 @@ class Winners
     }
 
 
-    function Winners(Winners $postData = null)
+    function TrophyWinners(Winners $postData = null)
     {
         global $wpdb;
 

@@ -4,7 +4,7 @@
 function lyra_admin_trophies()
 {
     echo "
-    <div class='LyraInputBlock'>
+    <div id='lyra_admin_trophies' class='LyraInputBlock'>
         <label  class='LyraInput' for='TrophyListingDropDown'>
             <span >Select Trophy</span>
             <select id='TrophyListingDropDown'>
@@ -14,9 +14,9 @@ function lyra_admin_trophies()
  
         <hr/>
  
-        <label class='LyraInput' for='TrophyID'><span >TrophyID</span><input type='text' id='TrophyID' readonly>   <button id='butClearTrophy' class='button action'>New (clear form)</button></label>
+        <label class='LyraInput' for='TrophyID'><span >TrophyID</span><input type='text' id='TrophyID' readonly value='-999'>   <button id='butClearTrophy' class='button action'>New (clear form)</button></label>
         <h3><a id='Link2TrophyPage' target='_blank' href=''>Current Winners Display Page</a></h3>
-       <label class='LyraInput' for='TrophyNameShort'><span >Name (Short)</span><input type='text' id='TrophyNameShort' placeholder='Name shown on lists'></label>
+       <label class='LyraInput' for='TrophyNameShort'><span >Name (Short)*</span><input type='text' id='TrophyNameShort' placeholder='Name shown on lists' required></label>
         <label class='LyraInput' for='TrophyColumnLabel'><span >Trophy Type</span><Select id='TrophyColumnLabel'><option>Boat</option><option>Person</option><option>Flag</option> </select></label>
         <label class='LyraInput' for='LongDescription'><span >Description</span><textarea id='LongDescription' placeholder='Long description for trophy's page.'></textarea></label>
         <label class='LyraInput' for='DeedOfGift'><span >Deed Of Gift</span><input type='text' id='DeedOfGift' placeholder='Deed of Gift'></label>
